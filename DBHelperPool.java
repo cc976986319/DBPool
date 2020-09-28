@@ -1,5 +1,3 @@
-package com.sensitiveidentifyapi.comm.JdbcConPool;
-
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Map.Entry;
