@@ -1,5 +1,3 @@
-package com.sensitiveidentifyapi.comm.JdbcConPool;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
