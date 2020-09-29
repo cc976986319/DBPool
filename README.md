@@ -1,6 +1,19 @@
 # DBPool
 java 实现连接池，平台连接客户数据库，实现同ip端口连接数可控
 
+注：有个设计缺陷，频繁切换同ip端口的不同库时会globalQueue获取空闲连接，但大概率获取到不是需要使用的库的连接，此时会关闭连接重新打开新的连接。
+  Long waitTime = _waitTimeout - (System.currentTimeMillis() - nowTime);
+       if (pooledObject == null) {
+             pooledObject = globalQueue.poll(waitTime, TimeUnit.MILLISECONDS);
+              if (!isSameDB(pooledObject, dbType, database, userName)) {
+                    if (!pooledObject.getConnection().isClosed()) {
+                       pooledObject.getConnection().close();
+                      }
+                  pooledObject = getPooledObject(dbType, ip, port, userName, password, database, serviceName,key);
+                  }
+         }
+
+使用方式
     @Autowired
     DBHelperPool dbHelperPool;
     
